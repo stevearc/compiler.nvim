@@ -34,7 +34,9 @@ function M.action(selected_option)
               " && echo \"" .. entry_point .. "\"" ..                             -- echo
               " && echo \"" .. final_message .. "\"",
           components = { "default_extended" }
-        },},},})
+        },},},
+        components = { "default_extended" }
+      })
     task:start()
   elseif selected_option == "option2" then
     local task = overseer.new_task({
@@ -47,7 +49,9 @@ function M.action(selected_option)
               " && echo \"" .. entry_point .. "\"" ..                             -- echo
               " && echo \"" .. final_message .. "\"",
           components = { "default_extended" }
-        },},},})
+        },},},
+        components = { "default_extended" }
+      })
     task:start()
   elseif selected_option == "option3" then
     local task = overseer.new_task({
@@ -58,7 +62,9 @@ function M.action(selected_option)
               " && echo \"" .. output .. "\"" ..                                  -- echo
               " && echo \"" .. final_message .. "\"",
           components = { "default_extended" }
-        },},},})
+        },},},
+        components = { "default_extended" }
+      })
     task:start()
   elseif selected_option == "option4" then
     local entry_points
@@ -109,7 +115,9 @@ function M.action(selected_option)
           tasks = {
             tasks,        -- Build all the programs in the solution in parallel
             executables   -- Then run the solution executable(s)
-          }}})
+          }},
+          components = { "default_extended" }
+        })
       task:start()
 
     else -- If no .solution file
@@ -133,7 +141,8 @@ function M.action(selected_option)
       end
 
       task = overseer.new_task({ -- run all tasks we've created in parallel
-        name = "- C++ compiler", strategy = { "orchestrator", tasks = tasks }
+        name = "- C++ compiler", strategy = { "orchestrator", tasks = tasks },
+        components = { "default_extended" }
       })
       task:start()
     end
